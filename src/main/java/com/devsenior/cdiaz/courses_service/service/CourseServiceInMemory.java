@@ -45,8 +45,8 @@ public class CourseServiceInMemory implements CourseService {
         }
 
         return courses.stream()
-                .filter(c -> c.getName().contains(partialName)
-                        || c.getDescription().contains(partialName))
+                .filter(c -> c.getName().toLowerCase().contains(partialName.toLowerCase())
+                        || c.getDescription().toUpperCase().contains(partialName.toUpperCase()))
                 .toList();
     }
 

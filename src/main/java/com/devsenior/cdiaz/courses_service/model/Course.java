@@ -2,12 +2,20 @@ package com.devsenior.cdiaz.courses_service.model;
 
 import java.time.LocalDate;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 // POJO - Plain Old Java Object
 // JavaBean
 // DTO - Data Transfer Object
+@Schema(description = "Representa un curso académico")
 public class Course {
+    @Schema(description = "Identificador unico gerenado automáticamente", example = "1")
     private Long id;
+
+    @Schema(description = "Nombre completo del curso", example = "Programacion Básica en Java")
     private String name;
+
+    @Schema(description = "Codigo único del curso", example = "Java101")
     private String code;
     private String description;
     private LocalDate initialDate;
