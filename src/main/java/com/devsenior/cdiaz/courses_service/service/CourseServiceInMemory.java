@@ -93,24 +93,24 @@ public class CourseServiceInMemory implements CourseService {
     }
 
     private void validateId(Long id) {
-        if (id == null) {
-            throw new IllegalArgumentException("El Id está vacio");
-        }
-        if (id < 0) {
-            throw new IllegalArgumentException("El Id no puede ser negativo");
-        }
+        // if (id == null) {
+        //     throw new IllegalArgumentException("El Id está vacio");
+        // }
+        // if (id < 0) {
+        //     throw new IllegalArgumentException("El Id no puede ser negativo");
+        // }
     }
 
     private void validateCourse(Course course){ 
-        if (course == null) {
-            throw new IllegalArgumentException("No fue enviado un curso a guardar.");
-        }
-        if (isBlank(course.getName())) {
-            throw new IllegalArgumentException("El nombre del curso es obligatorio.");
-        }
-        if (course.getCredits() <= 0) {
-            throw new IllegalArgumentException("Los créditos del curso deben ser mayores a 0.");
-        }
+        // if (course == null) {
+        //     throw new IllegalArgumentException("No fue enviado un curso a guardar.");
+        // }
+        // if (isBlank(course.getName())) {
+        //     throw new IllegalArgumentException("El nombre del curso es obligatorio.");
+        // }
+        // if (course.getCredits() <= 0) {
+        //     throw new IllegalArgumentException("Los créditos del curso deben ser mayores a 0.");
+        // }
         if (course.getInitialDate().isAfter(course.getFinalDate())) {
             throw new IllegalArgumentException("La fecha inicio debe ser anterior a la fecha final.");
         }

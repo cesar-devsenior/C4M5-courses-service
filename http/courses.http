@@ -48,3 +48,16 @@ DELETE http://localhost:8080/api/cursos/1
 
 ### Buscar los cursos que tenen un texto en específico
 GET http://localhost:8080/api/cursos/buscar?nombre=2026
+
+### Crear un curso con error
+POST http://localhost:8080/api/cursos
+Content-Type: application/json
+
+{
+    "name": "Programacion Orientada a Objectos con Java",
+    "code": "JAVA",
+    "description": "Este curso aborda los pilares de la programacion orientada a objetos...",
+    "initialDate": "2026-02-01",
+    "finalDate": "2026-02-28",
+    "credits": 0
+}

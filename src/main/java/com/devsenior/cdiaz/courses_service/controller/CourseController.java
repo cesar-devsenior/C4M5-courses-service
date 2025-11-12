@@ -21,6 +21,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 
 // DRY - Don't Repeat Yourself
 @Tag(name = "Cursos", description = "API para la gestión de cursos académicos")
@@ -53,7 +54,7 @@ public class CourseController {
     }
 
     @GetMapping("/buscar")
-    public List<Course> getCourseContainsText(@RequestParam("nombre") String name) {
+    public List<Course> getCourseContainsText(@RequestParam(value = "nombre") String name) {
         return courseService.getAllThatContainsName(name);
     }
 
@@ -62,13 +63,18 @@ public class CourseController {
     public Course createCourse(
             @RequestBody(description = "Datos del nuevo curso a crear", required = true,
                     content = @Content(schema = @Schema(implementation = Course.class)))
-            Course course) {
+            @org.springframework.web.bind.annotation.RequestBody
+            @Valid Course course) {
         return courseService.create(course);
     }
 
     @PutMapping("/{id}")
-    public Course updateCourse(@PathVariable Long id,
-            @RequestBody(description = "Datos del nuevo curso a crear", required = true, content = @Content(schema = @Schema(implementation = Course.class))) Course course) {
+    public Course updateCourse(@PathVariable 
+            Long id,
+            @RequestBody(description = "Datos del nuevo curso a crear", required = true,
+            content = @Content(schema = @Schema(implementation = Course.class)))
+            @org.springframework.web.bind.annotation.RequestBody
+            @Valid Course course) {
         return courseService.update(id, course);
     }
 

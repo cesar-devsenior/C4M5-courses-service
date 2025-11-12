@@ -3,6 +3,12 @@ package com.devsenior.cdiaz.courses_service.model;
 import java.time.LocalDate;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 // POJO - Plain Old Java Object
 // JavaBean
@@ -13,28 +19,40 @@ public class Course {
     private Long id;
 
     @Schema(description = "Nombre completo del curso", example = "Programacion Básica en Java")
+    @NotBlank(message = "El campo 'name' es obligatorio")
     private String name;
 
     @Schema(description = "Codigo único del curso", example = "Java101")
+    @NotBlank(message="El campo 'code' es obligatorio")
+    @Size(min = 5, message = "El campo 'code' debe tener por lo menos 5 carácteres")
+    @Size(max = 10, message = "El campo 'code' debe tener máximo 10 carácteres")
     private String code;
+
     private String description;
+    
+    @FutureOrPresent(message = "La fecha inicial no puede ser anterior a la fecha actual")
     private LocalDate initialDate;
+    
+    @Future(message = "La fecha final debe ser posterior a la fecha actual")
     private LocalDate finalDate;
+
+    @Min(value = 1, message = "El campo 'credits' debe tener un valor superior o igual a 1")
+    @Max(value = 5, message = "El campo 'credits' debe tener un valor inferior o igual a 5")
     private Integer credits;
 
     public Course() {
     }
 
-    public Course(Long id, String name, String code, String description, LocalDate initialDate, LocalDate finalDate,
-            Integer credits) {
-        this.id = id;
-        this.name = name;
-        this.code = code;
-        this.description = description;
-        this.initialDate = initialDate;
-        this.finalDate = finalDate;
-        this.credits = credits;
-    }
+    // public Course(Long id, String name, String code, String description, LocalDate initialDate, LocalDate finalDate,
+    //         Integer credits) {
+    //     this.id = id;
+    //     this.name = name;
+    //     this.code = code;
+    //     this.description = description;
+    //     this.initialDate = initialDate;
+    //     this.finalDate = finalDate;
+    //     this.credits = credits;
+    // }
 
     public Long getId() {
         return id;
